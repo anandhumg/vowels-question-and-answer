@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Accept user input for strArr
+        System.out.println("Enter the elements of strArr (comma-separated):");
+        String[] strArr = scanner.nextLine().split(",\\s*");
+
+        // Accept user input for queries
+        System.out.println("Enter the elements of queries (comma-separated):");
+        String[] queries = scanner.nextLine().split(",\\s*");
+
+        int[] myArray = new int[queries.length];
+
+        for (int i = 0; i < queries.length; i++) {
+            int sum = 0;
+            char[] lr = queries[i].toCharArray();
+            int l = Integer.parseInt(String.valueOf(lr[0]));
+            int r = Integer.parseInt(String.valueOf(lr[2]));
+
+            for (int j = l - 1; j < r; j++) {
+                char[] ch = strArr[j].toCharArray();
+                char first = ch[0];
+                char last = ch[ch.length - 1];
+                if (first == 'a' || first == 'e' || first == 'i' || first == 'o' || first == 'u') {
+                    if (last == 'a' || last == 'e' || last == 'i' || last == 'o' || last == 'u') {
+                        sum++;
+                    }
+                }
+            }
+            myArray[i] = sum;
+        }
+
+        // Print the result
+        System.out.println("Result:");
+        for (int value : myArray) {
+            System.out.println(value);
+        }
+    }
+}
